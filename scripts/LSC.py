@@ -18,7 +18,7 @@ def maya_main_window():
     return wrapInstance(long(main_window_ptr), QtWidgets.QWidget)
 
 class ControlMainWindow(QtWidgets.QWidget):
- 
+
     def __init__(self, parent=None):
         super(ControlMainWindow, self).__init__(parent)
         self.setWindowFlags(QtCore.Qt.Tool)
@@ -32,7 +32,6 @@ class ControlMainWindow(QtWidgets.QWidget):
         self.neutralIcon = QtGui.QIcon()
         self.neutralIcon.addPixmap(QtGui.QPixmap(":/icons/neutral.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         #self.ui.checkerListWidget.item(1).setIcon(passedIcon)
-           
     def eventFilter(self, source, event):
         if (event.type() == QtCore.QEvent.ContextMenu and
             source is self.ui.checkerListWidget):
@@ -41,7 +40,7 @@ class ControlMainWindow(QtWidgets.QWidget):
 
             if item.text() == 'Delete history':
                 self.historyCheckercall(menu,event,source)
-            
+
             if item.text() == 'world':
                 self.test2(menu,event,source)    
 
@@ -53,29 +52,29 @@ class ControlMainWindow(QtWidgets.QWidget):
         menu.addAction("delete all history",(self.deleteAllHistory))
         menu.addSeparator()
         menu.addAction("reset",(self.reset))
-        #menu.addAction("delete selected object(s)'s history",(self.test3))
         if menu.exec_(event.globalPos()):
             item = source.itemAt(event.pos())
-
-
-            
-
+           
     def test2(self,menu,event,source):
         menu.addAction("set passed",(self.test3))
         menu.addAction("set not passed")
         if menu.exec_(event.globalPos()):
             item = source.itemAt(event.pos())
 
+
     def deleteAllHistory(self):
-        cmds.delete( all=True, constructionHistory=True )
+
+        ObjectsInScene = cmds.ls()
+
+        for i in ObjectsInScene:
+            cmds.delete( all=True, constructionHistory=True )
+            
         self.ui.checkerListWidget.item(0).setIcon(self.passedIcon)
-        print "c'est bon"
+
 
     def reset(self):
-        all_items = self.ui.checkerListWidget.findItems('', QtCore.Qt.MatchRegExp)
-        for item in all_items:
-            print item
-        #self.ui.checkerListWidget.item(0).setIcon(self.neutralIcon)
+        print ('reset current item icon')
+        print ('reset all items icon')
 
 
 

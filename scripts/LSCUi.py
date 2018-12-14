@@ -1,11 +1,4 @@
-# -*- coding: utf-8 -*-
-
-# Form implementation generated from reading ui file 'D:/R&D/LSC/scripts/LSCUi.ui'
-#
-# Created: Wed Nov 07 12:45:36 2018
-#      by: pyside2-uic  running on PySide2 2.0.0~alpha0
-#
-# WARNING! All changes made in this file will be lost!
+import res_rc
 
 from PySide2 import QtCore, QtGui, QtWidgets
 
@@ -20,6 +13,7 @@ class Ui_Dialog(object):
         self.checkerListWidget.setAlternatingRowColors(True)
         self.checkerListWidget.setSelectionMode(QtWidgets.QAbstractItemView.ExtendedSelection)
         self.checkerListWidget.setIconSize(QtCore.QSize(30, 30))
+        self.checkerListWidget.setSpacing(2)
         self.checkerListWidget.setUniformItemSizes(False)
         self.checkerListWidget.setSelectionRectVisible(False)
         self.checkerListWidget.setObjectName("checkerListWidget")
@@ -44,4 +38,4 @@ class Ui_Dialog(object):
         self.checkerListWidget.item(1).setText(QtWidgets.QApplication.translate("Dialog", "and many more to come", None, -1))
         self.checkerListWidget.setSortingEnabled(__sortingEnabled)
 
-import res_rc
+
